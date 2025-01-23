@@ -1,19 +1,23 @@
 import { useState, useEffect } from "react"
 import { Header } from "./Header.jsx"
 import { Board } from "./Game.jsx"
+import { Loading } from "./Loading.jsx"
 import { randomize, getData } from "./utility.js"
-
+import { PropTypes } from 'prop-types'
 
 
 const App = () => {
     const [cards, setCards] = useState([])
     const [score, setScore] = useState(0)
     const [bestScore, setBestScore] = useState(0)
+    const [base, setBase] = useState([])
+    const [isReady, setIsReady] = useState(false)
 
     useEffect(() =>{
-        getData().then(res => {
+        getData(20).then(res => {
             setCards(res)
-        })
+            setBase(res)
+        }).then(() => setIsReady(true))
     }, [])
 
     const handleClick = (card) => {
@@ -28,11 +32,11 @@ const App = () => {
         } else {
             if (score > bestScore) setBestScore(score)  
             setScore(0)
-            setCards(data)
+        setCards(randomize(base))
         }
     }
 
-
+    if (!isReady) return <Loading />
 
     return (
         <>
@@ -41,6 +45,13 @@ const App = () => {
         </>
     )
 }
+
+
+Header.propTypes = {
+    score: PropTypes.number,
+    bestScore: PropTypes.number,
+}
+
 
 
 export { App }

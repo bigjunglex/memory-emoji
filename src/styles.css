@@ -20,3 +20,30 @@
 
     font-size: 25px
 }
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#dot1 {
+    animation: blink infinite 2s;
+    animation-delay: 0.1s;
+}
+
+#dot2 {
+    animation: blink infinite 2s;
+    animation-delay: 0.4s;
+}
+
+#dot3 {
+    animation: blink infinite 2s;
+    animation-delay: 0.7s;
+}

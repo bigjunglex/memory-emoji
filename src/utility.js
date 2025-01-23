@@ -15,8 +15,8 @@ const formatEmoji = (unicode) => {
     return String.fromCodePoint(codePoint)
 }
 
-const getData = async () => {
-    const arr = [...Array(12).keys()]
+const getData = async (num) => {
+    const arr = [...Array(num).keys()]
     const uniqEmoji = new Set();
 
     const res = await Promise.all(arr.map(async () => {
