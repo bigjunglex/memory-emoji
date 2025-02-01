@@ -36,12 +36,10 @@ const App = () => {
         }
     }
 
-    if (!isReady) return <Loading />
-
     return (
         <>
             <Header score={score} bestScore={bestScore} />
-            <Board cards={cards} clickController={handleClick} />
+            {isReady ? <Board cards={cards} clickController={handleClick} /> : <Loading />}
         </>
     )
 }

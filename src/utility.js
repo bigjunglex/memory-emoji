@@ -1,5 +1,5 @@
 const randomize = (data) => {
-    return data.sort((a, b) => Math.random(10) - Math.random(10) )
+    return data.sort((a, b) => Math.random() - Math.random())
 }
 
 const getEmoji = async () => {
