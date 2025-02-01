@@ -12,13 +12,19 @@ const App = () => {
     const [bestScore, setBestScore] = useState(0)
     const [base, setBase] = useState([])
     const [isReady, setIsReady] = useState(false)
+    const [newReq, setNewReq] = useState(false)
 
     useEffect(() =>{
         getData(20).then(res => {
             setCards(res)
             setBase(res)
         }).then(() => setIsReady(true))
-    }, [])
+    }, [newReq])
+
+    const getNewCard = () => {
+        setNewReq(!newReq)
+        setIsReady(false)
+    }
 
     const handleClick = (card) => {
         const indexOfCard = cards.findIndex(x => x[0] === card[0])
@@ -38,7 +44,7 @@ const App = () => {
 
     return (
         <>
-            <Header score={score} bestScore={bestScore} />
+            <Header score={score} bestScore={bestScore} onClick={getNewCard} />
             {isReady ? <Board cards={cards} clickController={handleClick} /> : <Loading />}
         </>
     )

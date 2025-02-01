@@ -7,7 +7,6 @@ const Card = ({ card , click }) => {
 }
 
 const Board = ({ cards, clickController }) => {
-    
     return (
         <div className="board">
             {cards.map(card => <Card key={card[0]} card={card} click={clickController}/>)}
